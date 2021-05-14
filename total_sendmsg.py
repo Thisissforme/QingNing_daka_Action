@@ -110,22 +110,22 @@ def kutui(stu_name):
 
 # 创建日志，清除日志内容
 def recoding_clean():
-    with open("/Aprogramming/daka2/recoding.txt", 'w+') as f:
+    with open("recoding.txt", 'w+') as f:
         f.read()
-    with open("/Aprogramming/daka2/recoding.txt", 'r+') as f:
+    with open("recoding.txt", 'r+') as f:
         f.seek(0)
         f.truncate()  # 清空文件
 
 
 # 运行成功写入1,
 def recoding_ture():
-    with open("/Aprogramming/daka2/recoding.txt", 'a+') as f:
+    with open("recoding.txt", 'a+') as f:
         state="1,"
         f.write(state)
 
 # 运行失败写入0,
 def recoding_false():
-    with open("/Aprogramming/daka2/recoding.txt", 'a+') as f:
+    with open("recoding.txt", 'a+') as f:
         state="0,"
         f.write(state)
 
@@ -154,7 +154,7 @@ def health_daka(s,key,code):
 
 
 def webdriver_holdon():
-    path = "/Aprogramming/daka2/chromedriver"
+    path = "chromedriver"
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
@@ -180,7 +180,7 @@ if __name__ == '__main__':
     # 查看日志记录值
     position = 0
     recoding_list = [] # 记录值
-    with open("/Aprogramming/daka2/recoding.txt",'r') as f:
+    with open("recoding.txt",'r') as f:
         recoding_data = f.read()
         for i in recoding_data:
             if i == ",":
@@ -188,7 +188,7 @@ if __name__ == '__main__':
             else:
                 recoding_list.append(int(i))
     ## 打开数据表
-    book = xlrd.open_workbook("/Aprogramming/daka2/data.xls")
+    book = xlrd.open_workbook("data.xls")
     table = book.sheet_by_name("data")
     # 获取总行数总列数
     row_Num = table.nrows
@@ -249,7 +249,7 @@ if __name__ == '__main__':
             time.sleep(2)
             # 简单的验证
             if a=="success":
-                with open("/Aprogramming/daka2/recoding.txt",'w') as f:
+                with open("recoding.txt",'w') as f:
                     recoding_list[position-1]=1
                     for i in recoding_list:
                         f.write(str(i)+',')
