@@ -102,23 +102,23 @@ def send_msg(text,atphone):
 
 # 创建日志，清除日志内容
 def recoding_clean():
-    with open("/Aprogramming/daka2/recoding.txt", 'w+') as f:
+    with open("recoding.txt", 'w+') as f:
         f.read()
-    with open("/Aprogramming/daka2/recoding.txt", 'r+') as f:
+    with open("recoding.txt", 'r+') as f:
         f.seek(0)
         f.truncate()  # 清空文件
 
 
 # 运行成功写入1,
 def recoding_ture():
-    with open("/Aprogramming/daka2/recoding.txt", 'a+') as f:
+    with open("recoding.txt", 'a+') as f:
         state="1,"
         f.write(state)
 
 
 # 运行失败写入0,
 def recoding_false():
-    with open("/Aprogramming/daka2/recoding.txt", 'a+') as f:
+    with open("recoding.txt", 'a+') as f:
         state="0,"
         f.write(state)
 
@@ -147,7 +147,7 @@ def health_daka(s,key,code):
 
 
 def webdriver_holdon():
-    path = "/Aprogramming/daka2/chromedriver"
+    path = "chromedriver"
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
@@ -172,7 +172,7 @@ def webdriver_holdon():
 if __name__ == '__main__':
     position = 0
     recoding_clean()
-    book = xlrd.open_workbook("/Aprogramming/daka2/data.xls")
+    book = xlrd.open_workbook("data.xls")
     table = book.sheet_by_name("data")
     # 获取总行数总列数
     row_Num = table.nrows
