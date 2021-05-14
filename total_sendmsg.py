@@ -150,7 +150,7 @@ def health_daka(s,key,code):
     # for i in range(2):
     health_url = 'https://wxyqfk.zhxy.net/?yxdm=10623#/clockIn'
     s.post(health_url,headers=headers)
-    health_result=s.post('https://yqfkapi.zhxy.net/api/ClockIn/Save',data=data_health,headers=headers)
+    s.post('https://yqfkapi.zhxy.net/api/ClockIn/Save',data=data_health,headers=headers)
 
 
 def webdriver_holdon():
