@@ -31,6 +31,12 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r requirements.txt
       - name: 'Working'
+        env:
+          UNAME: ${{ secrets.UNAME }}
+          PWD: ${{ secrets.PWD }}
+          DING: ${{ secrets.DING }}
+          KUTUI :${{ secrets.KUTUI }}
+
         run: |
           sudo cp -p chromedriver /usr/bin/
           chmod -R 777 /usr/bin/chromedriver
