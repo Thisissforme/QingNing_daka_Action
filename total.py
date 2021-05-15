@@ -187,14 +187,14 @@ if __name__ == '__main__':
         # 检测是否打卡
         try:
             # time.sleep(2)
-            if driver.find_element_by_class_name('already-title'):
+            if driver.find_element_by_class_name('already-title cc_cursor'):
                 print(stu_name+"今天已打卡")
                 driver.close()
                 a="success"
             else:
                 time.sleep(2)
                 driver.refresh()
-                driver.find_element_by_class_name("already-title")
+                driver.find_element_by_class_name("already-title cc_cursor")
                 print(stu_name + "今天已打卡")
                 driver.close()
                 a="success"
