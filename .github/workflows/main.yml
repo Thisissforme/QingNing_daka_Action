@@ -3,7 +3,7 @@ name: daka
 # Controls when the action will run. 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: "30 20 * * *"
 
