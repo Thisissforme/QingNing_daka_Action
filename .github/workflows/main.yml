@@ -4,9 +4,9 @@ name: daka
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ master ]
+  schedule:
+    - cron: "30 20 * * *"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -35,7 +35,7 @@ jobs:
           UNAME: ${{ secrets.UNAME }}
           PWD: ${{ secrets.PWD }}
           DING: ${{ secrets.DING }}
-          KUTUI :${{ secrets.KUTUI }}
+          KUTUI: ${{ secrets.KUTUI }}
 
         run: |
           sudo cp -p chromedriver /usr/bin/
