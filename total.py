@@ -4,6 +4,7 @@ import time
 import json
 import xlrd
 from selenium import webdriver
+import os
 headers={
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
     }
@@ -30,30 +31,10 @@ def login():
     return s
 
 '''
-图像识别接口一 http://www.fateadm.com/
+图像识别接口一 http://www.fateadm.com/ 已舍弃，太贵了
 '''
 def get_qrcode():
-    pic1=requests.get('https://yqfkapi.zhxy.net/api/common/getverifycode')
-    tex1=pic1.content
-    tex2=bytes.decode(tex1)
-    if json.loads(tex2)['info'] == '非法访问！':
-        print(tex2)
-        sys.exit()
-    tex3=json.loads(tex2)['data']['img']
-    key=json.loads(tex2)['data']['key']
-    url='data:image/png;base64,'+tex3
-    # print(url)
-    # print(qr_key)
-    # 1.识别验证码
-    img_url = url
-    from get_code import TestFunc
-    from urllib.request import urlretrieve
-    urlretrieve(img_url, 'qrcode_temp.png')
-    code = TestFunc()
-    # code="1234"
-    print(code)
-    print("调用了1接口（斐斐打码接口）")
-    return key,code
+    pass
 
 '''
 图像识别接口2 http://www.ttshitu.com/
@@ -81,10 +62,11 @@ def get_qrcode2():
     print("调用了2接口（图鉴接口）")
     return key,code
 
-
+# 钉钉机器人（舍弃）
 def send_msg(text,atphone):
+    DING = os.environ["DING"]
     headers = {'Content-Type': 'application/json;charset=utf-8'}
-    url = 'https://oapi.dingtalk.com/robot/send?access_token=cfb45651fad634745c979270b807f07d3a083e9ce35e0d4776adbf069126b113'
+    url = 'https://oapi.dingtalk.com/robot/send?access_token='+DING
     json_text = {
         "msgtype":"text",
         "text": {
