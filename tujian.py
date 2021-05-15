@@ -3,8 +3,10 @@ import json
 import requests
 import time
 import os
+uname = os.environ["UNAME"]
+pwd=os.environ["PWD"]
 img_path="qrcode_temp.png"
-def base64_api(uname, pwd, img=img_path):
+def base64_api(uname=uname, pwd=pwd, img=img_path):
     with open(img, 'rb') as f:
         base64_data = base64.b64encode(f.read())
         b64 = base64_data.decode()
@@ -17,8 +19,5 @@ def base64_api(uname, pwd, img=img_path):
 
 
 if __name__ == "__main__":
-    uname = os.environ["UNAME"]
-    pwd=os.environ["PWD"]
-
     result = base64_api()
     print(result)
