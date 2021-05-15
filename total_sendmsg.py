@@ -29,31 +29,6 @@ def login():
     print(login_result)
     return s
 
-'''
-图像识别接口一 http://www.fateadm.com/
-'''
-def get_qrcode():
-    pic1=requests.get('https://yqfkapi.zhxy.net/api/common/getverifycode')
-    tex1=pic1.content
-    tex2=bytes.decode(tex1)
-    if json.loads(tex2)['info'] == '非法访问！':
-        print(tex2)
-        sys.exit()
-    tex3=json.loads(tex2)['data']['img']
-    key=json.loads(tex2)['data']['key']
-    url='data:image/png;base64,'+tex3
-    # print(url)
-    # print(qr_key)
-    # 1.识别验证码
-    img_url = url
-    from get_code import TestFunc
-    from urllib.request import urlretrieve
-    urlretrieve(img_url, 'qrcode_temp.png')
-    code = TestFunc()
-    # code="1234"
-    print(code)
-    print("调用了1接口（斐斐打码接口）")
-    return key,code
 
 '''
 图像识别接口2 http://www.ttshitu.com/
@@ -83,27 +58,14 @@ def get_qrcode2():
 
 # 钉钉机器人(已放弃）
 def send_msg(text,atphone):
-    headers = {'Content-Type': 'application/json;charset=utf-8'}
-    url = 'https://oapi.dingtalk.com/robot/send?access_token=cfb45651fad634745c979270b807f07d3a083e9ce35e0d4776adbf069126b113'
-    json_text = {
-        "msgtype":"text",
-        "text": {
-            "content": ""
-        },
-        "at": {
-            "atMobiles": atphone,
-            "isAtAll": False
-        }
-    }
-    json_text['text']['content']=text
-    json_text['at']['atMobiles']=atphone
-    requests.post(url, json.dumps(json_text), headers=headers)
+   pass
 
 
 # 酷推机器人
 # 酷推机器人
 def kutui(stu_name):
-    url = "https://push.xuthus.cc/group/848c8ac61b3d42195673ab57bcf51cf7"
+    KUTUIkey= os.environ["KUTUIkey"]
+    url = "https://push.xuthus.cc/group/"+KUTUIkey
     data=stu_name+'打卡失败了，手动打吧@face=67@'
     da=data.encode('utf-8')
     requests.post(url, da)
@@ -256,9 +218,10 @@ if __name__ == '__main__':
                 print(stu_name+"打卡成功")
             else:
                 # 发送消息
-                print(stu_name+"打卡失败")
-                txt=":打卡失败"+stu_name
+                print(stu_name+'''打卡失败了✿◡‿◡)''')
+                txt=stu_name+'''打卡失败了✿◡‿◡)'''
                 a=time.strftime("%H", time.localtime())# 当前时间
                 if int(a)>=6:
                     kutui(stu_name)
+            
     sys.exit()
