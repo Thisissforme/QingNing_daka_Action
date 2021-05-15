@@ -43,9 +43,9 @@ def get_qrcode2():
     pic1=requests.get('https://yqfkapi.zhxy.net/api/common/getverifycode')
     tex1=pic1.content
     tex2=bytes.decode(tex1)
-    if json.loads(tex2)['info'] == '非法访问！':
-        print(tex2)
-        sys.exit()
+    # if json.loads(tex2)['info'] == '非法访问！':
+    #     print(tex2)
+    #     sys.exit()
     tex3=json.loads(tex2)['data']['img']
     key=json.loads(tex2)['data']['key']
     url='data:image/png;base64,'+tex3
