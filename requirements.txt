@@ -1,4 +1,5 @@
-xlrd==2.0.1
-selenium==3.141.0
-requests==2.23.0
-lxml==4.5.1
+xlrd
+selenium
+requests
+lxml
+urllib3
