@@ -62,24 +62,6 @@ def get_qrcode2():
     print("调用了2接口（图鉴接口）")
     return key,code
 
-# 钉钉机器人（舍弃）
-def send_msg(text,atphone):
-    DING = os.environ["DING"]
-    headers = {'Content-Type': 'application/json;charset=utf-8'}
-    url = 'https://oapi.dingtalk.com/robot/send?access_token='+DING
-    json_text = {
-        "msgtype":"text",
-        "text": {
-            "content": ""
-        },
-        "at": {
-            "atMobiles": atphone,
-            "isAtAll": False
-        }
-    }
-    json_text['text']['content']=text
-    json_text['at']['atMobiles']=atphone
-    requests.post(url, json.dumps(json_text), headers=headers)
 
 
 # 创建日志，清除日志内容
