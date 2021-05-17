@@ -1,14 +1,11 @@
-name: selenium
+name: webdriver
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  schedule:
+    - cron: "30 20 * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,8 +28,10 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r requirements.txt
       - name: 'Working'
+        env:
+          UNAME: ${{ secrets.UNAME }}
+          PWD: ${{ secrets.PWD }}
         run: |
           sudo cp -p chromedriver /usr/bin/
           chmod -R 777 /usr/bin/chromedriver
-          python total.py data.xls tujian.py recoding.txt
-         
+          python total.py data.xls recoding.txt tujian.py
