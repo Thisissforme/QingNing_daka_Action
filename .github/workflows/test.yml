@@ -34,5 +34,5 @@ jobs:
         run: |
           sudo cp -p chromedriver /usr/bin/
           chmod -R 777 /usr/bin/chromedriver
-          python 1.py
+          python total.py data.xls tujian.py recoding.txt
          
