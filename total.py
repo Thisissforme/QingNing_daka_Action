@@ -5,6 +5,7 @@ import json
 import xlrd
 from selenium import webdriver
 import os
+import base64
 headers={
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
     }
@@ -73,6 +74,13 @@ def recoding_clean():
         f.truncate()  # 清空文件
 
 
+def kutui(stu_name):
+    KUTUIkey= os.environ["KUTUIkey"]
+    url = "https://push.xuthus.cc/group/"+KUTUIkey
+    data=stu_name+'打卡失败了，手动打吧@face=67@'
+    da=data.encode('utf-8')
+    requests.post(url, da)
+
 # 运行成功写入1,
 def recoding_ture():
     with open("recoding.txt", 'a+') as f:
@@ -132,6 +140,19 @@ def webdriver_holdon():
     driver.get("https://wxyqfk.zhxy.net/?yxdm=10623#/clockIn")
     time.sleep(1)
     return driver
+
+img_path="qrcode_temp.png"
+def base64_api(uname="Zion", pwd="123456qwerty", img=img_path):
+    with open(img, 'rb') as f:
+        base64_data = base64.b64encode(f.read())
+        b64 = base64_data.decode()
+    data = {"username": uname, "password": pwd, "image": b64}
+    result = json.loads(requests.post("http://api.ttshitu.com/base64", json=data).text)
+    if result['success']:
+        return result["data"]["result"]
+    else:
+        return result["message"]
+
 
 if __name__ == '__main__':
     position = 0
