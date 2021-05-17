@@ -169,12 +169,13 @@ if __name__ == '__main__':
         # 检测是否打卡
         try:
             # time.sleep(2)
+            print("检测打卡状态")
             if driver.find_element_by_class_name('already-title cc_cursor'):
                 print(stu_name+"今天已打卡")
                 driver.close()
                 a="success"
             else:
-                time.sleep(2)
+                print("未打卡，刷新重新检查")
                 driver.refresh()
                 driver.find_element_by_class_name("already-title cc_cursor")
                 print(stu_name + "今天已打卡")
@@ -182,7 +183,9 @@ if __name__ == '__main__':
                 a="success"
         # 识别验证码
         except:
+            print("未打卡，开始打卡------")
             key, code = get_qrcode2()
+            print(code)
             time.sleep(2)
             health_daka(s, key, code)
             if len(code)==4:
